@@ -7,7 +7,7 @@ class EmailService {
   static const String _defaultApiKey = '';
   static const String _baseUrl = 'https://api.resend.com/emails';
 
-  /// Retrieves the Resend API Key dynamically from the Secrets table.
+  /// Retrieves the Resend API Key dynamically.
   /// If resend_use_default is true or no key is found, falls back to the default API Key.
   static Future<String> getResendApiKey() async {
     try {
