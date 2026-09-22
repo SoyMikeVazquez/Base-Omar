@@ -1,0 +1,32 @@
+[
+    {
+        "PhoneNotifications": "528334539727",
+        "Soporte": "https://soymikevazquez.com/contacto-soporte-y-dudas-de-omars-studio/",
+        "PUNTOSPARACITAS": 0,
+        "Version": 100,
+        "BLOQUEOAPP": false,
+        "ubicacionDeLaEmpresa": "Cuarta Avenida 150-100, Los Aztecas, 89606 Miramar, Tamps.",
+        "DiasParaVolverCanjear": 1,
+        "conSucursales": false,
+        "ActivarModoApertura": false,
+        "RecompensaTituloPuntos": "Sin recompensas aún",
+        "FechasDeRenovacionDePuntos": "2025-05-24 01:30:00+00:00",
+        "ActivaLaNotificacionGeneral": false,
+        "imagePortada": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/gestion/Marcas/OMar/barber%202.jpg",
+        "PUNTOSALCOMPLETAR": 20,
+        "RecompensaDescripcionPuntos": "Sin recompensas aún",
+        "CapacidadDeEditar": false,
+        "LogoDeLaEmpresa": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/logo//Omars%20Barber%20Shop.png",
+        "imageMap": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/logo//Omars%20Barber%20Shop.png",
+        "ElimCuenta": false,
+        "PoliticaDePrivacidad": "https://soymikevazquez.com/politica-de-privacidad-de-omars-studio/",
+        "ConfigPuntoDeVenta": false,
+        "PUNTOSDELQR": 20,
+        "IDEmpresa": "FRFROIJNU821",
+        "NombreDeLaEmpresa": "Omar's Studio",
+        "NumerodeUsuarios": 1,
+        "PIN": "123456",
+        "VacantesActivo": false,
+        "id_documento": "U2b24KHN1yBfw7jOuCrN"
+    }
+]

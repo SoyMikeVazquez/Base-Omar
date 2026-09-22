@@ -1,0 +1,38 @@
+[
+    {
+        "descriptEmploy": "Sin información",
+        "listimgEmploy": [
+            "https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/maria-bonita-m4140q/assets/uzmrog528tsz/logo.jpg"
+        ],
+        "nameEmply": "Rolando Chávez",
+        "EmSucursal": "Omar's Barber - Sucursal Montealto",
+        "photoEmploy": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/productos/general/1747872082240593.jpg",
+        "resenasEmploy": 4.0,
+        "IDEmploy": "M76K5DI1M",
+        "WhatsApp": "528333250203",
+        "IDEmpresa": "FRFROIJNU821",
+        "Inventario": "Sin inventario aún",
+        "listReviews": [
+            "Lista para resibir reseñas"
+        ],
+        "id_documento": "5HicpZ1AWQaHOFfF7ZiZ"
+    },
+    {
+        "descriptEmploy": "Sin información",
+        "listimgEmploy": [
+            "https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/maria-bonita-m4140q/assets/uzmrog528tsz/logo.jpg"
+        ],
+        "nameEmply": "Kevin Delgado",
+        "EmSucursal": "Omar's Barber - Sucursal Montealto",
+        "photoEmploy": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/productos/general/1771122320412615.jpg",
+        "resenasEmploy": 4.0,
+        "IDEmploy": "HDI2T96EX",
+        "WhatsApp": "528338540342",
+        "IDEmpresa": "FRFROIJNU821",
+        "Inventario": "Sin inventario aún",
+        "listReviews": [
+            "Lista para resibir reseñas"
+        ],
+        "id_documento": "MEFJ1tMJcTYizMkG4vYN"
+    }
+]

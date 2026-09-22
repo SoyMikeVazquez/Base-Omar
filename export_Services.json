@@ -1,0 +1,44 @@
+[
+    {
+        "nameService": "PLANCHADO DE CEJA",
+        "IDServices": "QS8G8J6LJ",
+        "descriptionService": "¿Cejas rebeldes? ¡Ya no más! El planchado de cejas es el tratamiento perfecto para alinear, definir y mantener tus cejas en su lugar por semanas, con un acabado limpio y natural.",
+        "ImageService": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/servicios/general/1747375771507860.jpg",
+        "id_documento": "AjN3Kvoy9liK1qskglQ6"
+    },
+    {
+        "nameService": "DISEÑO DE GRECAS",
+        "IDServices": "QWNDMOWX3",
+        "descriptionService": "Los precios de las grecas dependen de cada diseño.",
+        "ImageService": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/servicios/general/1747360477158714.jpg",
+        "id_documento": "AwLNuEqhg9mhPp0P3JUL"
+    },
+    {
+        "nameService": "CORTE DE CABELLO",
+        "IDServices": "IVDBL72SO",
+        "descriptionService": "💈 Inspírate con los estilos que dominan la calle.Aquí te mostramos una selección de cortes hechos por nuestros barberos, con técnica, estilo y precisión.Desde fades limpios hasta diseños agresivos, tenemos el corte ideal para cada personalidad.Guarda tu favorito y pide tu turno directo desde la app.🎯 Corte real, estilo RUDO.",
+        "ImageService": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/servicios/general/1747360858136953.jpg",
+        "id_documento": "La7zxyYODXaFvSenYrjC"
+    },
+    {
+        "nameService": "PERFILADO DE CEJA",
+        "IDServices": "74EAISPEZ",
+        "descriptionService": "Dale forma y fuerza a tu mirada con nuestro servicio de perfilado de cejas, pensado para realzar tus rasgos sin perder tu esencia masculina.",
+        "ImageService": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/servicios/general/1747375498192540.jpg",
+        "id_documento": "Xlk2w7MiH2kcuEx0vPgT"
+    },
+    {
+        "nameService": "ARREGLO DE BARBA",
+        "IDServices": "LT29SAE0W",
+        "descriptionService": "Arreglo de Barba – Ritual RUDO 🧔🔥Define tu estilo con precisión. Perfilado con navaja, toalla caliente y productos premium que revitalizan tu barba y piel. Un servicio para verdaderos cabrones del cuidado personal.",
+        "ImageService": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/servicios/general/1748024821424969.jpg",
+        "id_documento": "bBNfSEJzf3kN48a9jfzO"
+    },
+    {
+        "nameService": "CATALOGO CURSO DE BARBERÍA",
+        "IDServices": "Q21SYFB0C",
+        "descriptionService": "💈 Curso Profesional de Barbería¿Listo para dominar las tijeras y la máquina? En nuestro curso de 12 clases aprenderás desde lo más básico hasta técnicas avanzadas como desvanecidos, cortes clásicos, taper fade, mohawk y más.\n✅ Clases 100% prácticas desde el primer día\n✅ Uso y mantenimiento de herramientas\n✅ Práctica en modelos reales\n✅ Diploma al finalizar\nDirigido a principiantes con ganas de aprender una profesión rentable y creativa.\n📍Ubicados en Col. Azteca, Av. Cuauhtémoc 470, Tampico.",
+        "ImageService": "https://zxkvyajmvkxufsogsrug.supabase.co/storage/v1/object/public/servicios/general/1747346589006438.jpg",
+        "id_documento": "y8LVK8ccrBVnM9ecWrQX"
+    }
+]
