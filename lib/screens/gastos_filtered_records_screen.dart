@@ -59,8 +59,13 @@ class _GastosFilteredRecordsScreenState extends State<GastosFilteredRecordsScree
       
       final filteredGastos = <Map<String, dynamic>>[];
       for (var r in gastosList) {
-        if (r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) {
-          sum += double.tryParse((r['total'] ?? 0).toString()) ?? 0.0;
+        final isGasto = (r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) || (r['descripcion_extras'] == 'Gasto registrado');
+        if (isGasto) {
+          final gastoMonto = double.tryParse(r['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+              double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ??
+              double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+              0.0;
+          sum += gastoMonto;
           filteredGastos.add(r);
         }
       }
@@ -99,7 +104,10 @@ class _GastosFilteredRecordsScreenState extends State<GastosFilteredRecordsScree
   void _showDetails(Map<String, dynamic> rec) {
     final fecha = rec['fecha'] != null ? DateTime.parse(rec['fecha']) : null;
     final sucursal = rec['sucursal'] ?? '';
-    final total = double.tryParse(rec['Gasto'].toString()) ?? 0.0;
+    final total = double.tryParse(rec['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+        double.tryParse((rec['total'] ?? 0).toString().replaceAll(',', '.')) ??
+        double.tryParse((rec['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+        0.0;
     
     showModalBottomSheet(
       context: context,
@@ -236,7 +244,10 @@ class _GastosFilteredRecordsScreenState extends State<GastosFilteredRecordsScree
                           (ctx, i) {
                             final rec = _gastos[i];
                             final fecha = rec['fecha'] != null ? DateTime.parse(rec['fecha']) : null;
-                            final total = double.tryParse(rec['Gasto'].toString()) ?? 0.0;
+                            final total = double.tryParse(rec['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+                                double.tryParse((rec['total'] ?? 0).toString().replaceAll(',', '.')) ??
+                                double.tryParse((rec['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+                                0.0;
                             
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 12),

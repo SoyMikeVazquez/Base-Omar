@@ -221,12 +221,13 @@ class _FinanzasPersonalScreenState extends State<FinanzasPersonalScreen> {
       final quienRegistro = sessionProv.isRecepcion ? 'Recepcion' : 'Personal';
 
       if (_isExpense) {
+        final gastoMonto = double.tryParse(_gastoController.text.replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim()) ?? 0.0;
         await _service.insertarRegistro(
           personalId: widget.personalId,
           serviciosIds: [],
           serviciosDetalle: [],
           sumaServicios: 0.0,
-          montosExtras: 0.0,
+          montosExtras: gastoMonto,
           descripcionExtras: 'Gasto registrado',
           formaPago: _formaPago,
           fecha: DateTime(

@@ -283,10 +283,14 @@ class _PersonalFinanceKpisScreenState extends State<PersonalFinanceKpisScreen>
       for (final r in rawFinanzas) {
         final isGasto = (r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) || (r['descripcion_extras'] == 'Gasto registrado');
         if (isGasto) {
-          expensesSum += double.tryParse((r['total'] ?? 0).toString()) ?? 0.0;
+          final gastoMonto = double.tryParse(r['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+              double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ??
+              double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+              0.0;
+          expensesSum += gastoMonto;
         } else {
-          servicesSum += double.tryParse((r['suma_servicios'] ?? 0).toString()) ?? 0.0;
-          extrasSum += double.tryParse((r['montos_extras'] ?? 0).toString()) ?? 0.0;
+          servicesSum += double.tryParse((r['suma_servicios'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0;
+          extrasSum += double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0;
         }
       }
 

@@ -39,13 +39,16 @@ class FinanzasService {
       }
     }
 
-    final total = (sumaServicios + montosExtras);
+    final gastoNum = double.tryParse((gasto ?? '').replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim()) ?? 0.0;
+    final total = (sumaServicios + montosExtras) > 0
+        ? (sumaServicios + montosExtras)
+        : (gastoNum > 0 ? gastoNum : 0.0);
     final data = {
       'personalID': personalId,
       'servicios_ids': serviciosIds,
       'servicios_detalle': serviciosDetalle,
       'suma_servicios': sumaServicios,
-      'montos_extras': montosExtras,
+      'montos_extras': montosExtras > 0 ? montosExtras : gastoNum,
       'descripcion_extras': descripcionExtras,
       'formadepago': formaPago,
       if (fecha != null) 'fecha': fecha.toIso8601String(),

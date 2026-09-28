@@ -561,11 +561,15 @@ class _FinanzasSucursalDashboardScreenState extends State<FinanzasSucursalDashbo
       double expenses = 0.0;
 
       for (var r in finanzasResp) {
-        sumServ += double.tryParse((r['suma_servicios'] ?? 0).toString()) ?? 0.0;
-        sumExt += double.tryParse((r['montos_extras'] ?? 0).toString()) ?? 0.0;
+        sumServ += double.tryParse((r['suma_servicios'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0;
+        sumExt += double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0;
         
         final isGasto = (r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) || (r['descripcion_extras'] == 'Gasto registrado');
-        final total = double.tryParse((r['total'] ?? 0).toString()) ?? 0.0;
+        final gastoMonto = double.tryParse(r['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+            double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ??
+            double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+            0.0;
+        final total = isGasto ? gastoMonto : (double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0);
         final formaPago = (r['formadepago'] as String? ?? '').toLowerCase().trim();
 
         if (isGasto) {
@@ -603,7 +607,11 @@ class _FinanzasSucursalDashboardScreenState extends State<FinanzasSucursalDashbo
       for (var r in finanzasResp) {
         final pid = (r['personalID'] ?? '').toString();
         final isGasto = (r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) || (r['descripcion_extras'] == 'Gasto registrado');
-        final total = double.tryParse((r['total'] ?? 0).toString()) ?? 0.0;
+        final gastoMonto = double.tryParse(r['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+            double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ??
+            double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+            0.0;
+        final total = isGasto ? gastoMonto : (double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0);
         final suc = (r['sucursal'] ?? '').toString().trim();
         if (pid.isNotEmpty) {
           personalTotals[pid] = (personalTotals[pid] ?? 0.0) + (isGasto ? 0.0 : total);
@@ -1136,10 +1144,13 @@ class _FinanzasSucursalDashboardScreenState extends State<FinanzasSucursalDashbo
     final isGasto = isService && ((rec['Gasto'] != null && rec['Gasto'].toString().trim().isNotEmpty) || (rec['descripcion_extras'] == 'Gasto registrado'));
 
     final total = isGasto
-        ? (double.tryParse(rec['Gasto'].toString()) ?? 0.0)
+        ? (double.tryParse(rec['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+           double.tryParse((rec['total'] ?? 0).toString().replaceAll(',', '.')) ??
+           double.tryParse((rec['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+           0.0)
         : (isService
-            ? (double.tryParse((rec['total'] ?? 0).toString()) ?? 0.0)
-            : (double.tryParse((rec['suma_productos'] ?? 0).toString()) ?? 0.0));
+            ? (double.tryParse((rec['total'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0)
+            : (double.tryParse((rec['suma_productos'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0));
 
     final servicios = isService ? (rec['servicios_detalle'] as List? ?? []) : [];
     final productos = !isService ? (rec['productos_detalle'] as List? ?? []) : [];
@@ -2149,7 +2160,10 @@ class _FinanzasSucursalDashboardScreenState extends State<FinanzasSucursalDashbo
     final isService = !r.containsKey('suma_productos');
     final isGasto = isService && ((r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) || (r['descripcion_extras'] == 'Gasto registrado'));
     final total = isGasto
-        ? (double.tryParse(r['Gasto'].toString()) ?? 0.0)
+        ? (double.tryParse(r['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+           double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ??
+           double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+           0.0)
         : (isService
             ? (double.tryParse((r['total'] ?? 0).toString()) ?? 0.0)
             : (double.tryParse((r['suma_productos'] ?? 0).toString()) ?? 0.0));

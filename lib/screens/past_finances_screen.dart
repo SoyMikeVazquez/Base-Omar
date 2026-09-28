@@ -152,7 +152,11 @@ class _PastFinancesScreenState extends State<PastFinancesScreen> {
     double expenses = 0.0;
     for (var t in _filteredTransactions) {
       final isGasto = (t['Gasto'] != null && t['Gasto'].toString().trim().isNotEmpty) || (t['descripcion_extras'] == 'Gasto registrado');
-      final monto = isGasto ? (double.tryParse(t['Gasto'].toString()) ?? 0.0) : (double.tryParse((t['total'] ?? 0).toString()) ?? 0.0);
+      final gastoMonto = double.tryParse(t['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+          double.tryParse((t['total'] ?? 0).toString().replaceAll(',', '.')) ??
+          double.tryParse((t['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+          0.0;
+      final monto = isGasto ? gastoMonto : (double.tryParse((t['total'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0);
       final formaPago = (t['formadepago'] as String? ?? '').toLowerCase().trim();
       
       if (isGasto) {
@@ -168,7 +172,7 @@ class _PastFinancesScreenState extends State<PastFinancesScreen> {
     double cashIncome = 0.0;
     for (var t in _filteredTransactions) {
       final isGasto = (t['Gasto'] != null && t['Gasto'].toString().trim().isNotEmpty) || (t['descripcion_extras'] == 'Gasto registrado');
-      final monto = double.tryParse((t['total'] ?? 0).toString()) ?? 0.0;
+      final monto = double.tryParse((t['total'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0;
       final formaPago = (t['formadepago'] as String? ?? '').toLowerCase().trim();
       if (!isGasto && formaPago.contains('efectivo')) {
         cashIncome += monto;
@@ -182,7 +186,11 @@ class _PastFinancesScreenState extends State<PastFinancesScreen> {
     for (var t in _filteredTransactions) {
       final isGasto = (t['Gasto'] != null && t['Gasto'].toString().trim().isNotEmpty) || (t['descripcion_extras'] == 'Gasto registrado');
       if (isGasto) {
-        expenses += double.tryParse(t['Gasto'].toString()) ?? 0.0;
+        final gastoMonto = double.tryParse(t['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+            double.tryParse((t['total'] ?? 0).toString().replaceAll(',', '.')) ??
+            double.tryParse((t['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+            0.0;
+        expenses += gastoMonto;
       }
     }
     return expenses;

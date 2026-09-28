@@ -141,7 +141,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
         now.year,
         now.month,
         now.day,
-      ).toUtc().toIso8601String();
+      ).toIso8601String();
       final endOfToday = DateTime(
         now.year,
         now.month,
@@ -150,21 +150,24 @@ class _DashboardAdminState extends State<DashboardAdmin> {
         59,
         59,
         999,
-      ).toUtc().toIso8601String();
+      ).toIso8601String();
 
       // Consultar Finanzas Gral de hoy
       final finanzasGralResp = await Supabase.instance.client
           .from('FinanzasPersonal')
-          .select('suma_servicios, montos_extras')
+          .select('suma_servicios, montos_extras, Gasto, descripcion_extras')
           .eq('personalID', userId)
           .gte('fecha', startOfToday)
           .lte('fecha', endOfToday);
 
       double sumGral = 0.0;
       for (var row in finanzasGralResp) {
-        final serv = double.tryParse((row['suma_servicios'] ?? 0).toString()) ?? 0.0;
-        final ext = double.tryParse((row['montos_extras'] ?? 0).toString()) ?? 0.0;
-        sumGral += (serv * 0.50) + ext;
+        final isGasto = (row['Gasto'] != null && row['Gasto'].toString().trim().isNotEmpty) || (row['descripcion_extras'] == 'Gasto registrado');
+        if (!isGasto) {
+          final serv = double.tryParse((row['suma_servicios'] ?? 0).toString()) ?? 0.0;
+          final ext = double.tryParse((row['montos_extras'] ?? 0).toString()) ?? 0.0;
+          sumGral += serv + ext;
+        }
       }
 
       // Consultar OrdenesProductos de hoy
@@ -487,7 +490,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
                   now.year,
                   now.month,
                   now.day,
-                ).toUtc().toIso8601String();
+                ).toIso8601String();
                 final endOfToday = DateTime(
                   now.year,
                   now.month,
@@ -496,7 +499,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
                   59,
                   59,
                   999,
-                ).toUtc().toIso8601String();
+                ).toIso8601String();
                 var query = Supabase.instance.client
                     .from('FinanzasPersonal')
                     .select()

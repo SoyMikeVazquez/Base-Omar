@@ -1,3 +1,9 @@
+// ============================================================================
+// REGLA PRINCIPAL - PROYECTO OMAR:
+// QUEDA ESTRICTAMENTE PROHIBIDO MODIFICAR ESTA PANTALLA (FinanzasFilteredRecordsScreen)
+// Y SU LÓGICA DE FILTRADO/CÁLCULOS. CUALQUIER CAMBIO PUEDE AFECTAR LOS TOTALES Y KPI'S.
+// ============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:totalpro/utils/formatters.dart';
 import 'package:intl/intl.dart' as intl;
@@ -93,10 +99,14 @@ class _FinanzasFilteredRecordsScreenState
       double sumExpenses = 0.0;
       for (var r in finResp) {
         final isGasto = (r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) || (r['descripcion_extras'] == 'Gasto registrado');
+        final gastoMonto = double.tryParse(r['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+            double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ??
+            double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+            0.0;
         if (isGasto) {
-          sumExpenses += double.tryParse((r['total'] ?? 0).toString()) ?? 0.0;
+          sumExpenses += gastoMonto;
         } else {
-          sumIncome += double.tryParse((r['total'] ?? 0).toString()) ?? 0.0;
+          sumIncome += double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0;
         }
       }
       for (var r in ordResp) {
@@ -161,10 +171,13 @@ class _FinanzasFilteredRecordsScreenState
     final isService = !rec.containsKey('suma_productos');
     final isGasto = isService && ((rec['Gasto'] != null && rec['Gasto'].toString().trim().isNotEmpty) || (rec['descripcion_extras'] == 'Gasto registrado'));
     final total = isGasto
-        ? (double.tryParse(rec['Gasto'].toString()) ?? 0.0)
+        ? (double.tryParse(rec['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+           double.tryParse((rec['total'] ?? 0).toString().replaceAll(',', '.')) ??
+           double.tryParse((rec['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+           0.0)
         : (isService
-            ? (double.tryParse((rec['total'] ?? 0).toString()) ?? 0.0)
-            : (double.tryParse((rec['suma_productos'] ?? 0).toString()) ?? 0.0));
+            ? (double.tryParse((rec['total'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0)
+            : (double.tryParse((rec['suma_productos'] ?? 0).toString().replaceAll(',', '.')) ?? 0.0));
     final servicios = isService ? (rec['servicios_detalle'] as List? ?? []) : [];
     final productos = !isService ? (rec['productos_detalle'] as List? ?? []) : [];
     final extras = isService ? (double.tryParse((rec['montos_extras'] ?? 0).toString()) ?? 0.0) : 0.0;
@@ -384,7 +397,10 @@ class _FinanzasFilteredRecordsScreenState
     final fecha = r['fecha'] != null ? DateTime.parse(r['fecha']) : null;
     final isGasto = isService && ((r['Gasto'] != null && r['Gasto'].toString().trim().isNotEmpty) || (r['descripcion_extras'] == 'Gasto registrado'));
     final total = isGasto
-        ? (double.tryParse(r['Gasto'].toString()) ?? 0.0)
+        ? (double.tryParse(r['Gasto']?.toString().replaceAll('\$', '').replaceAll('-', '').replaceAll(',', '.').trim() ?? '') ??
+           double.tryParse((r['total'] ?? 0).toString().replaceAll(',', '.')) ??
+           double.tryParse((r['montos_extras'] ?? 0).toString().replaceAll(',', '.')) ??
+           0.0)
         : (isService
             ? (double.tryParse((r['total'] ?? 0).toString()) ?? 0.0)
             : (double.tryParse((r['suma_productos'] ?? 0).toString()) ?? 0.0));
