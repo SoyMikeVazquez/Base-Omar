@@ -657,7 +657,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'FINANZAS GENERAL',
+                      'GANANCIAS FINALES',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.5),
                         fontSize: 9,
@@ -667,7 +667,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '\$${_finanzasGralHoy.toStringAsFixed(2)}',
+                      '\$${(_finanzasGralHoy / 2).toStringAsFixed(2)}',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 17,
